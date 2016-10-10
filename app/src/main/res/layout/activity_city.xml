@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ville"
+        android:id="@+id/textCity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Pays"
+        android:id="@+id/textCountry"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textCity"
+        android:layout_alignStart="@+id/textCity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Vent (km/h)"
+        android:id="@+id/textWind"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/textCountry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Température (°c)"
+        android:id="@+id/textTemp"
+        android:layout_above="@+id/textPressure"
+        android:layout_alignStart="@+id/textWind"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Pression (hPa)"
+        android:id="@+id/textPressure"
+        android:layout_above="@+id/textDate"
+        android:layout_alignStart="@+id/textTemp"
+        android:layout_marginBottom="50dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:id="@+id/textDate"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textPressure"
+        android:layout_marginBottom="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textAnsCity"
+        android:layout_alignTop="@+id/textCity"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="30dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textAnsCountry"
+        android:layout_alignBottom="@+id/textCountry"
+        android:layout_alignStart="@+id/textAnsCity" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textAnsWind"
+        android:layout_alignTop="@+id/textWind"
+        android:layout_alignStart="@+id/textAnsCountry" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textAnsTemp"
+        android:layout_alignTop="@+id/textTemp"
+        android:layout_alignStart="@+id/textAnsWind" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textAnsPressure"
+        android:layout_alignTop="@+id/textPressure"
+        android:layout_alignStart="@+id/textAnsTemp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textAnsDate"
+        android:layout_below="@+id/textPressure"
+        android:layout_alignStart="@+id/textAnsPressure" />
+</RelativeLayout>
