@@ -30,11 +30,17 @@ public class AddCityActivity extends Activity {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                tmpCity = "";
+                tmpCountry = "";
                 tmpCity = city.getText().toString();
                 tmpCountry = country.getText().toString();
-                CityListActivity.adapter.add(new City(tmpCity, tmpCountry));
-                Toast.makeText(getBaseContext(), "you just have add " + tmpCity + ", "
-                        + tmpCountry, Toast.LENGTH_LONG).show();
+                if(!tmpCity.isEmpty() || !tmpCountry.isEmpty()){
+                    CityListActivity.adapter.add(new City(tmpCity, tmpCountry));
+                    Toast.makeText(getBaseContext(), "you just added " + tmpCity + ", "
+                            + tmpCountry, Toast.LENGTH_LONG).show();
+                } else{
+                    Toast.makeText(getBaseContext(), "information missing", Toast.LENGTH_LONG).show();
+                }
 
                 finish();
             }

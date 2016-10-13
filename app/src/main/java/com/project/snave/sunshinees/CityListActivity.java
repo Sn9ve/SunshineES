@@ -80,6 +80,10 @@ public class CityListActivity extends AppCompatActivity {
             case R.id.action_settings:
                 Toast.makeText(getBaseContext(), "no option available", Toast.LENGTH_LONG).show();
                 return true;
+            case R.id.action_refresh:
+                RefreshTask rt = new RefreshTask(getBaseContext());
+                rt.execute(cities.get(1).getName(), cities.get(1).getCountry());
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
