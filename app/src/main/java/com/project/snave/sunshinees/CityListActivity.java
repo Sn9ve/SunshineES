@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -37,10 +39,9 @@ public class CityListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 City city = (City) parent.getItemAtPosition(position);
-                Intent intent = new Intent(CityListActivity.this, AddCityActivity.class);
-                /*Intent intent = new Intent(CityListActivity.this, CityViewActivity.class);
+                Intent intent = new Intent(CityListActivity.this, CityViewActivity.class);
                 intent.putExtra("CITY", city.getName());
-                intent.putExtra("COUNTRY", city.getCountry());*/
+                intent.putExtra("COUNTRY", city.getCountry());
                 startActivity(intent);
             }
         });
@@ -60,5 +61,26 @@ public class CityListActivity extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //ajoute les entrées de menu_test à l'ActionBar
+        getMenuInflater().inflate(R.menu.action_bar, menu);
+        return true;
+    }
+
+    //gère le click sur une action de l'ActionBar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_add:
+                Intent intent = new Intent(CityListActivity.this, AddCityActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.action_settings:
+                Toast.makeText(getBaseContext(), "no option available", Toast.LENGTH_LONG).show();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
