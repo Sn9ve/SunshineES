@@ -39,15 +39,15 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editVille"
+        android:id="@+id/editCity"
         android:layout_alignTop="@+id/textCity"
         android:layout_alignStart="@+id/save" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/editPays"
+        android:id="@+id/editCountry"
         android:layout_alignTop="@+id/textCountry"
-        android:layout_alignStart="@+id/editVille"
+        android:layout_alignStart="@+id/editCity"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>

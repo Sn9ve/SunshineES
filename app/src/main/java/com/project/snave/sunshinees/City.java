@@ -12,7 +12,7 @@ public class City {
     private int pressure;           // hPa
     private int temperature;        // c°
 
-    public City(String country, String name) {
+    public City(String name, String country) {
         this.country = country;
         this.name = name;
     }
