@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">SunshineES</string>
+    <string name="city">ville</string>
+    <string name="country">pays</string>
+    <string name="pressure">pression</string>
+    <string name="temperature">temperature</string>
+    <string name="wind">vent</string>
+    <string name="date">date</string>
+    <string name="action_add">action ajoutere</string>
+    <string name="action_settings">option</string>
 </resources>

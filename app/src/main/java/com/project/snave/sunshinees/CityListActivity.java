@@ -3,9 +3,9 @@ package com.project.snave.sunshinees;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -25,8 +25,10 @@ public class CityListActivity extends AppCompatActivity {
         cities.add(new City("Détroit","USA"));
         cities.add(new City("Venice","USA"));
 
-        CityView = (ListView) findViewById(R.id.listView);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
 
+        CityView = (ListView) findViewById(R.id.listView);
         adapter = new CityAdapter(CityListActivity.this, cities);
         CityView.setAdapter(adapter);
 
