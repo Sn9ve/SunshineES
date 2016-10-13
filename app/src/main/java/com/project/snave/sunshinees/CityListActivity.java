@@ -52,7 +52,7 @@ public class CityListActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 City city = (City) parent.getItemAtPosition(position);
                 if(cities.contains(city)) {
-                    Toast.makeText(getBaseContext(), "you just have remove " + city.getName() + ", "
+                    Toast.makeText(getBaseContext(), "you just removed " + city.getName() + ", "
                             + city.getCountry(), Toast.LENGTH_LONG).show();
                     adapter.remove(city);
                     return true;
