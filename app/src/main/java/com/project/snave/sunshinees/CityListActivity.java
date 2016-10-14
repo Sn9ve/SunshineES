@@ -24,8 +24,9 @@ public class CityListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cities.add(new City("Détroit","USA"));
-        cities.add(new City("Venice","USA"));
+        cities.add(new City("Detroit","United States"));
+        cities.add(new City("Venice","United States"));
+        cities.add(new City("Paris","France"));
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);

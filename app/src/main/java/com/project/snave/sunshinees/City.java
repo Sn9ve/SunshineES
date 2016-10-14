@@ -20,7 +20,6 @@ public class City {
         this.wind = "missing";
         this.pressure = "missing";
         this.temperature = "missing";
-
     }
 
     public boolean updateData(ArrayList<String> data){

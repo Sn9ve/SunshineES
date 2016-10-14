@@ -44,13 +44,15 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
 
             String query = "select * from weather.forecast where woeid in " +
                     "(select woeid from geo.places(1) where text=\'" +
-                    tmpCity.getName() + "," + tmpCity.getCountry() + "\'";
+                    tmpCity.getName() + "," + tmpCity.getCountry() + "\')";
+
+
 
             Uri uri = Uri.parse(BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, query)
                     .appendQueryParameter(FORMAT_PARAM, "json")
                     .build();
-
+            Log.v("uri",uri.toString());
             try {
                 URL url = new URL(uri.toString());
                 connection = (HttpURLConnection) url.openConnection();
@@ -58,11 +60,8 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
                 connection.connect();
                 InputStream inputStream = connection.getInputStream();
                 tmpCity.updateData((ArrayList) jsonRH.handleResponse(inputStream, null));
+                //CityListActivity.adapter.notifyDataSetChanged();
 
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (ProtocolException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
