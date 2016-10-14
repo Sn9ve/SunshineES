@@ -51,9 +51,8 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
                     .appendQueryParameter(FORMAT_PARAM, "json")
                     .build();
 
-            URL url = null;
             try {
-                url = new URL(uri.toString());
+                URL url = new URL(uri.toString());
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.connect();
