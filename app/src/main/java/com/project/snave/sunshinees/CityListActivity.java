@@ -40,8 +40,7 @@ public class CityListActivity extends AppCompatActivity {
                                     int position, long id) {
                 City city = (City) parent.getItemAtPosition(position);
                 Intent intent = new Intent(CityListActivity.this, CityViewActivity.class);
-                intent.putExtra("CITY", city.getName());
-                intent.putExtra("COUNTRY", city.getCountry());
+                intent.putExtra("INDEX", cities.indexOf(city));
                 startActivity(intent);
             }
         });
@@ -82,7 +81,7 @@ public class CityListActivity extends AppCompatActivity {
                 return true;
             case R.id.action_refresh:
                 RefreshTask rt = new RefreshTask(getBaseContext());
-                rt.execute(cities.get(1).getName(), cities.get(1).getCountry());
+                rt.execute(cities);
                 return true;
         }
         return super.onOptionsItemSelected(item);

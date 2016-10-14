@@ -16,6 +16,11 @@ public class City {
     public City(String name, String country) {
         this.country = country;
         this.name = name;
+        this.lastDate = "missing";
+        this.wind = "missing";
+        this.pressure = "missing";
+        this.temperature = "missing";
+
     }
 
     public boolean updateData(ArrayList<String> data){
