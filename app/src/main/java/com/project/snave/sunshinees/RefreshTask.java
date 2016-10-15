@@ -80,8 +80,8 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
     }
 
     @Override
-    protected void onProgressUpdate(Void... values) {
+    protected void onPostExecute(Void aVoid) {
         Toast.makeText(context, "background task, done", Toast.LENGTH_LONG).show();
-        super.onProgressUpdate(values);
+        super.onPostExecute(aVoid);
     }
 }

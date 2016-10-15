@@ -15,9 +15,10 @@ import java.util.ArrayList;
 
 public class CityListActivity extends AppCompatActivity {
 
-    ListView CityView ;
+    private ListView CityView ;
     public static ArrayList<City> cities = new ArrayList<>();
     public static CityAdapter adapter;
+    private RefreshTask rt = new RefreshTask(getBaseContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,8 @@ public class CityListActivity extends AppCompatActivity {
         CityView = (ListView) findViewById(R.id.listView);
         adapter = new CityAdapter(CityListActivity.this, cities);
         CityView.setAdapter(adapter);
+
+        rt.execute(cities);
 
         CityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -81,7 +84,6 @@ public class CityListActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "no option available", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_refresh:
-                RefreshTask rt = new RefreshTask(getBaseContext());
                 rt.execute(cities);
                 return true;
         }
