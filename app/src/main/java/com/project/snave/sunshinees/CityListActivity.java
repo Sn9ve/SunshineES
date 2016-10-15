@@ -19,7 +19,6 @@ public class CityListActivity extends AppCompatActivity {
     private ListView CityView ;
     public static ArrayList<City> cities = new ArrayList<>();
     public static CityAdapter adapter;
-    private RefreshTask rt = new RefreshTask(getBaseContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +82,7 @@ public class CityListActivity extends AppCompatActivity {
                 Toast.makeText(getBaseContext(), "no option available", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_refresh:
+                RefreshTask rt = new RefreshTask(getBaseContext());
                 rt.execute(cities);
                 return true;
         }

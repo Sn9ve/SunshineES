@@ -32,7 +32,7 @@ public class AddCityActivity extends Activity {
                 tmpCountry = "";
                 tmpCity = city.getText().toString();
                 tmpCountry = country.getText().toString();
-                if(!tmpCity.isEmpty() || !tmpCountry.isEmpty()){
+                if(!tmpCity.isEmpty() && !tmpCountry.isEmpty()){
                     CityListActivity.adapter.add(new City(tmpCity, tmpCountry));
                     Toast.makeText(getBaseContext(), "you just added " + tmpCity + ", "
                             + tmpCountry, Toast.LENGTH_LONG).show();
