@@ -22,35 +22,20 @@ public class CityViewActivity extends Activity {
         pressure = (TextView) findViewById(R.id.textAnsPressure);
         lastDate = (TextView) findViewById(R.id.textAnsDate);
 
-        String intentCity, intentCountry;
         int intentPosition;
 
-        //if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                intentCity = null;
-                intentCountry = null;
-                intentPosition = 0;
-                finish();
-            } else {
-                /*intentCity = extras.getString("CITY");
-                intentCountry = extras.getString("COUNTRY");*/
-                intentPosition = extras.getInt("INDEX");
-                City tmpCity = CityListActivity.cities.get(intentPosition);
-                city.setText(tmpCity.getName());
-                country.setText(tmpCity.getCountry());
-                lastDate.setText(tmpCity.getLastDate());
-                wind.setText(tmpCity.getWind());
-                pressure.setText(tmpCity.getPressure());
-                temperature.setText(tmpCity.getTemperature());
-            }
-        /*} else {
-            /*intentCity = (String) savedInstanceState.getSerializable("CITY");
-            intentCountry = (String) savedInstanceState.getSerializable("COUNTRY");
-        }*/
-
-
-        /*city.setText(intentCity);
-        country.setText(intentCountry);*/
+        Bundle extras = getIntent().getExtras();
+        if(extras == null) {
+            finish();
+        } else {
+            intentPosition = extras.getInt("INDEX");
+            City tmpCity = CityListActivity.cities.get(intentPosition);
+            city.setText(tmpCity.getName());
+            country.setText(tmpCity.getCountry());
+            lastDate.setText(tmpCity.getLastDate());
+            wind.setText(tmpCity.getWind());
+            pressure.setText(tmpCity.getPressure());
+            temperature.setText(tmpCity.getTemperature());
+        }
     }
 }
