@@ -3,7 +3,7 @@ package com.project.snave.sunshinees;
 import java.util.ArrayList;
 
 /**
- * Created by Snave on 09/10/2016.
+ * Created by Snave on 09/10/2016. new test
  */
 public class City {
     private String name;
