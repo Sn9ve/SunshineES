@@ -36,11 +36,11 @@ public class AddCityActivity extends Activity {
                     CityListActivity.adapter.add(new City(tmpCity, tmpCountry));
                     Toast.makeText(getBaseContext(), "you just added " + tmpCity + ", "
                             + tmpCountry, Toast.LENGTH_LONG).show();
+                    finish();
                 } else{
                     Toast.makeText(getBaseContext(), "information missing", Toast.LENGTH_LONG).show();
                 }
 
-                finish();
             }
         });
     }

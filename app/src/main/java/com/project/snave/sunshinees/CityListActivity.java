@@ -2,6 +2,7 @@ package com.project.snave.sunshinees;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -36,8 +37,6 @@ public class CityListActivity extends AppCompatActivity {
         adapter = new CityAdapter(CityListActivity.this, cities);
         CityView.setAdapter(adapter);
 
-        rt.execute(cities);
-
         CityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -63,8 +62,8 @@ public class CityListActivity extends AppCompatActivity {
                 return false;
             }
         });
-
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         //ajoute les entrées de menu_test à l'ActionBar
