@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Created by Snave on 10/10/2016.
+ * Simple classe qui hérite d'adapter pour créer une vue spécifique à l'affichage de la liste
+ * ainsi que la gestion du roulement de données de la liste
  */
 public class CityAdapter extends ArrayAdapter<City> {
 

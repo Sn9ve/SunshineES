@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 /**
  * Created by Snave on 09/10/2016.
+ * classe de l'activité d'ajout de ville
  */
 public class AddCityActivity extends Activity {
     Button save;
@@ -30,15 +31,21 @@ public class AddCityActivity extends Activity {
             public void onClick(View view) {
                 tmpCity = "";
                 tmpCountry = "";
+                //on récupère les valeurs contenue dans nos différent inputText
                 tmpCity = city.getText().toString();
                 tmpCountry = country.getText().toString();
+                //on vérifie que nos information ne sont pas vide
                 if(!tmpCity.isEmpty() && !tmpCountry.isEmpty()){
+                    //on ajoute directement dans l'adapter la nouvelle ville
+                    //au lieu de l'ajouter dans l'arraylist
+                    //puis ensuite notifier l'adapter de ce changement
                     CityListActivity.adapter.add(new City(tmpCity, tmpCountry));
                     Toast.makeText(getBaseContext(), "you just added " + tmpCity + ", "
                             + tmpCountry, Toast.LENGTH_LONG).show();
+                    //on quitte l'activité pour revenir à l'activité principale
                     finish();
                 } else{
-                    Toast.makeText(getBaseContext(), "information missing", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "missing information", Toast.LENGTH_LONG).show();
                 }
 
             }

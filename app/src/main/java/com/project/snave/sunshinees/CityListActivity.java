@@ -2,7 +2,6 @@ package com.project.snave.sunshinees;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -36,6 +35,7 @@ public class CityListActivity extends AppCompatActivity {
         adapter = new CityAdapter(CityListActivity.this, cities);
         CityView.setAdapter(adapter);
 
+        //action d'affichage des détails d'une ville lorsque l'on appuie sur un itemm de la listeview,
         CityView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -46,7 +46,7 @@ public class CityListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //action de supppression d'une ville lorsque que l'on appuie longuement sur un item
         CityView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener(){
 
             @Override
@@ -65,12 +65,12 @@ public class CityListActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        //ajoute les entrées de menu_test à l'ActionBar
+        //ajoute les entrées de menu à l'ActionBar
         getMenuInflater().inflate(R.menu.action_bar, menu);
         return true;
     }
 
-    //gère le click sur une action de l'ActionBar
+    //gestion du click sur une action de l'ActionBar
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){

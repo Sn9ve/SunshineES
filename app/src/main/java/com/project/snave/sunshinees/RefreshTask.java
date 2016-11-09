@@ -22,12 +22,11 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
 
     private HttpURLConnection connection;
     private JSONResponseHandler jsonRH = new JSONResponseHandler();
-
+    //préparation de la requête get
     final String BASE_URL = "https://query.yahooapis.com/v1/public/yql?";
     final String QUERY_PARAM = "q";
     final String FORMAT_PARAM = "format";
 
-    private String country, city;
     private City tmpCity;
 
     public RefreshTask(Context context) {
@@ -36,6 +35,7 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
 
     @Override
     protected Void doInBackground(ArrayList<City>... params) {
+        //on parcour toute la liste de ville pour mettre à jour les informations des villes
         Iterator i = params[0].iterator();
         while(i.hasNext()) {
             tmpCity = (City) i.next();
@@ -44,26 +44,25 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
                     "(select woeid from geo.places(1) where text=\'" +
                     tmpCity.getName() + "," + tmpCity.getCountry() + "\')";
 
-
-
             Uri uri = Uri.parse(BASE_URL).buildUpon()
                     .appendQueryParameter(QUERY_PARAM, query)
                     .appendQueryParameter(FORMAT_PARAM, "json")
                     .build();
-            Log.v("uri",uri.toString());
+
             try {
                 URL url = new URL(uri.toString());
                 connection = (HttpURLConnection) url.openConnection();
                 connection.setRequestMethod("GET");
                 connection.connect();
                 InputStream inputStream = connection.getInputStream();
+                //récupération des données puis envoie en paramètre pour la mise à jour
                 tmpCity.updateData((ArrayList) jsonRH.handleResponse(inputStream, null));
-                //CityListActivity.adapter.notifyDataSetChanged();
 
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 if (connection != null) {
+                    //après chaque connection qu'elle est marchée ou pas, on se déconnecte
                     connection.disconnect();
                 }
             }

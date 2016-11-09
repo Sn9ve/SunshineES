@@ -9,9 +9,9 @@ public class City {
     private String name;
     private String country;
     private String lastDate;
-    private String wind;          // km/h
-    private String pressure;           // hPa
-    private String temperature;        // c°
+    private String wind;                // km/h
+    private String pressure;            // hPa
+    private String temperature;         // c°
 
     public City(String name, String country) {
         this.country = country;
@@ -22,6 +22,10 @@ public class City {
         this.temperature = "missing";
     }
 
+    /**
+     * fonction qui permet de mettre à jour tous les attributs d'une caractéristique d'une ville
+     * prend en paramètre un arraylist contenant toutes les informations à jour
+     */
     public boolean updateData(ArrayList<String> data){
         if(!data.isEmpty()){
             setWind(data.get(0));

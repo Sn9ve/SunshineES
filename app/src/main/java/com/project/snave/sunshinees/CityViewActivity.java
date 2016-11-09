@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 /**
  * Created by Snave on 10/10/2016.
+ * classe pour l'activité qui affiche les différentes information d'une ville
  */
 public class CityViewActivity extends Activity {
 
@@ -26,8 +27,11 @@ public class CityViewActivity extends Activity {
 
         Bundle extras = getIntent().getExtras();
         if(extras == null) {
+            //si aucune donnée n'a était transmis dans l'intent, on quitte l'activité
+            //pour revenir à l'activité principale
             finish();
         } else {
+            //récupération de la position de la ville que l'on souhaite afficher
             intentPosition = extras.getInt("INDEX");
             City tmpCity = CityListActivity.cities.get(intentPosition);
             city.setText(tmpCity.getName());
