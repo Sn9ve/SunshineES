@@ -16,7 +16,17 @@ public class MeiManage {
         db = mDbHelper.getReadableDatabase();
     }
 
-    public Cursor getAllCities(String city, String country){
+    public Cursor getAllCities(){
+
+        // How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                MeiContract.FeedEntry.COLUMN_NAME_CITY + " DESC";
+
+        Cursor c = db.rawQuery("select * from table",null);
+        return c;
+    }
+
+    public Cursor getCity(String city, String country){
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.
         String[] projection = {
@@ -33,18 +43,14 @@ public class MeiManage {
         String selection = MeiContract.FeedEntry.COLUMN_NAME_CITY + " = ?";
         String[] selectionArgs = { city };
 
-        // How you want the results sorted in the resulting Cursor
-        String sortOrder =
-                MeiContract.FeedEntry.COLUMN_NAME_CITY + " DESC";
-
         Cursor c = db.query(
-                MeiContract.FeedEntry.TABLE_NAME,                     // The table to query
-                projection,                               // The columns to return
-                selection,                                // The columns for the WHERE clause
-                selectionArgs,                            // The values for the WHERE clause
-                null,                                     // don't group the rows
-                null,                                     // don't filter by row groups
-                sortOrder                                 // The sort order
+                MeiContract.FeedEntry.TABLE_NAME,             // The table to query
+                projection,                                   // The columns to return
+                selection,                                    // The columns for the WHERE clause
+                selectionArgs,                                // The values for the WHERE clause
+                null,                                         // don't group the rows
+                null,                                         // don't filter by row groups
+                null                                          // The sort order
         );
         return c;
     }
