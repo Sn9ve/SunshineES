@@ -21,6 +21,9 @@
         <activity android:name=".activity.AddCityActivity" />
         <activity android:name=".activity.CityViewActivity" />
         <activity android:name=".activity.SettingsActivity" />
+        <provider
+            android:authorities="com.project.snave.sunshinees"
+            android:name="com.project.snave.sunshinees.CityProvider" />
     </application>
 
 </manifest>

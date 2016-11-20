@@ -1,6 +1,8 @@
 package com.project.snave.sunshinees.activity;
 
 import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +11,7 @@ import android.widget.Toast;
 
 import com.project.snave.sunshinees.data.City;
 import com.project.snave.sunshinees.R;
+import com.project.snave.sunshinees.data.db.MeiContract;
 
 /**
  * Created by Snave on 09/10/2016.
@@ -43,7 +46,14 @@ public class AddCityActivity extends Activity {
                     //au lieu de l'ajouter dans l'arraylist
                     //puis ensuite notifier l'adapter de ce changement
                     CityListActivity.adapter.add(new City(tmpCity, tmpCountry));
-                    CityListActivity.db.addCity(tmpCity, tmpCountry);
+                    //CityListActivity.db.addCity(tmpCity, tmpCountry);
+                    /** RESOLVER **/
+                    ContentValues values = new ContentValues();
+                    values.put(MeiContract.FeedEntry.COLUMN_NAME_CITY, tmpCity);
+                    values.put(MeiContract.FeedEntry.COLUMN_NAME_COUNTRY, tmpCountry);
+                    ContentResolver resolver = getContentResolver();
+                    resolver.insert(MeiContract.FeedEntry.CONTENT_URI, values);
+
                     Toast.makeText(getBaseContext(), "you just added " + tmpCity + ", "
                             + tmpCountry, Toast.LENGTH_LONG).show();
                     //on quitte l'activité pour revenir à l'activité principale

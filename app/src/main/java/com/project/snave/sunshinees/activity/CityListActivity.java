@@ -1,5 +1,6 @@
 package com.project.snave.sunshinees.activity;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.project.snave.sunshinees.data.City;
+import com.project.snave.sunshinees.data.db.MeiContract;
 import com.project.snave.sunshinees.view.CityAdapter;
 import com.project.snave.sunshinees.R;
 import com.project.snave.sunshinees.task.RefreshTask;
@@ -41,8 +43,30 @@ public class CityListActivity extends AppCompatActivity {
         rt = new RefreshTask(getBaseContext());
 
         db = new MeiManage(this);
-        //cities.add(new City("Detroit","United States"));
-        Tools.feedList(cities, db.getAllCities());
+        //cities.add(new City("Detroit","United States")); //example
+        //Tools.feedList(cities, db.getAllCities());
+        /** PROVIDER **/
+        ContentResolver resolver = getContentResolver();
+        String[] projection = {
+                MeiContract.FeedEntry._ID,
+                MeiContract.FeedEntry.COLUMN_NAME_CITY,
+                MeiContract.FeedEntry.COLUMN_NAME_COUNTRY,
+                MeiContract.FeedEntry.COLUMN_NAME_DATE,
+                MeiContract.FeedEntry.COLUMN_NAME_WIND,
+                MeiContract.FeedEntry.COLUMN_NAME_PRESSURE,
+                MeiContract.FeedEntry.COLUMN_NAME_TEMPERATURE
+        };
+        // How you want the results sorted in the resulting Cursor
+        String sortOrder = MeiContract.FeedEntry.COLUMN_NAME_CITY + " DESC";
+        Tools.feedList(cities,
+                resolver.query(
+                        MeiContract.FeedEntry.CONTENT_URI,
+                        projection,
+                        null,
+                        null,
+                        sortOrder
+                )
+        );
 
         // Restore preferences
         settings = this.getPreferences(0);
@@ -79,7 +103,15 @@ public class CityListActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "you just removed " + city.getName() + ", "
                             + city.getCountry(), Toast.LENGTH_LONG).show();
                     adapter.remove(city);
-                    db.deleteCity(city.getName(), city.getCountry());
+                    //db.deleteCity(city.getName(), city.getCountry());
+                    /** Provide **/
+                    ContentResolver resolver = getContentResolver();
+                    resolver.delete(
+                            MeiContract.FeedEntry.CONTENT_URI.buildUpon().appendPath(city.getCountry()).appendPath(city.getName()).build(),
+                            MeiContract.FeedEntry.COLUMN_NAME_CITY + " LIKE ? AND "
+                                    + MeiContract.FeedEntry.COLUMN_NAME_COUNTRY + " LIKE ?",
+                            null
+                    );
                     return true;
                 }
                 return false;
