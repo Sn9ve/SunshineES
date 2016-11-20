@@ -9,6 +9,6 @@
     <string name="date">date</string>
 
     <string name="action_add">action ajoutere</string>
-    <string name="action_settings">option</string>
-    <string name="action_refresh">rafraichir</string>
+    <string name="action_settings">paramètres</string>
+    <string name="action_refresh">rafraîchir</string>
 </resources>

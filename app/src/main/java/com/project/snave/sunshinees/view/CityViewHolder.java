@@ -1,4 +1,4 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.view;
 
 import android.widget.TextView;
 

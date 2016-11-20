@@ -1,8 +1,12 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.project.snave.sunshinees.data.City;
+import com.project.snave.sunshinees.R;
+import com.project.snave.sunshinees.tools.Tools;
 
 /**
  * Created by Snave on 10/10/2016.
@@ -37,9 +41,10 @@ public class CityViewActivity extends Activity {
             city.setText(tmpCity.getName());
             country.setText(tmpCity.getCountry());
             lastDate.setText(tmpCity.getLastDate());
-            wind.setText(tmpCity.getWind());
+            wind.setText(Tools.toMiles(CityListActivity.prefWindSpeed, tmpCity.getWind()));
             pressure.setText(tmpCity.getPressure());
-            temperature.setText(tmpCity.getTemperature());
+            temperature.setText(Tools.toFahrenheit(CityListActivity.prefTemperature,
+                    tmpCity.getTemperature()));
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.data.db;
 
 import android.provider.BaseColumns;
 
@@ -15,8 +15,8 @@ public class MeiContract {
         public static final String TABLE_NAME = "entry";
         public static final String COLUMN_NAME_CITY = "city";
         public static final String COLUMN_NAME_COUNTRY = "country";
-        public static final String COLUMN_NAME_WIND_SPEED = "wind_speed";
-        public static final String COLUMN_NAME_WIND_DIRECTION = "wind_direction";
+        public static final String COLUMN_NAME_DATE = "date";
+        public static final String COLUMN_NAME_WIND = "wind";
         public static final String COLUMN_NAME_PRESSURE = "pressure";
         public static final String COLUMN_NAME_TEMPERATURE = "temperature";
     }

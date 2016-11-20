@@ -1,9 +1,8 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.tools;
 
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.util.JsonReader;
-import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;

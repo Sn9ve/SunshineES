@@ -1,10 +1,13 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.task;
 
 import android.content.Context;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.Toast;
+
+import com.project.snave.sunshinees.activity.CityListActivity;
+import com.project.snave.sunshinees.data.City;
+import com.project.snave.sunshinees.tools.JSONResponseHandler;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +59,10 @@ public class RefreshTask extends AsyncTask<ArrayList<City>, Void, Void> {
                 connection.connect();
                 InputStream inputStream = connection.getInputStream();
                 //récupération des données puis envoie en paramètre pour la mise à jour
-                tmpCity.updateData((ArrayList) jsonRH.handleResponse(inputStream, null));
+                if(inputStream != null){
+                    tmpCity.updateData((ArrayList) jsonRH.handleResponse(inputStream, null));
+                    CityListActivity.db.updateCities(CityListActivity.cities);
+                }
 
             } catch (IOException e) {
                 e.printStackTrace();

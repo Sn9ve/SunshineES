@@ -1,4 +1,4 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.data;
 
 import java.util.ArrayList;
 
@@ -20,6 +20,16 @@ public class City {
         this.wind = "missing";
         this.pressure = "missing";
         this.temperature = "missing";
+    }
+
+    public City(String name, String country, String lastDate,
+                String wind, String pressure, String temperature) {
+        this.country = country;
+        this.name = name;
+        this.lastDate = lastDate;
+        this.wind = wind;
+        this.pressure = pressure;
+        this.temperature = temperature;
     }
 
     /**

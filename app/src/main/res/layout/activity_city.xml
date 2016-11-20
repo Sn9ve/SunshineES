@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Vent (km/h)"
+        android:text="Vent"
         android:id="@+id/textWind"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/textCountry" />
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Température (°c)"
+        android:text="Température"
         android:id="@+id/textTemp"
         android:layout_above="@+id/textPressure"
         android:layout_alignStart="@+id/textWind"

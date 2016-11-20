@@ -1,4 +1,4 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.data.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -20,12 +20,12 @@ public class MeiHelper extends SQLiteOpenHelper {
                     MeiContract.FeedEntry._ID + " INTEGER PRIMARY KEY," +
                     MeiContract.FeedEntry.COLUMN_NAME_CITY + TEXT_TYPE + COMMA_SEP +
                     MeiContract.FeedEntry.COLUMN_NAME_COUNTRY + TEXT_TYPE + COMMA_SEP +
-                    MeiContract.FeedEntry.COLUMN_NAME_WIND_SPEED + TEXT_TYPE + COMMA_SEP +
-                    MeiContract.FeedEntry.COLUMN_NAME_WIND_DIRECTION + TEXT_TYPE + COMMA_SEP +
+                    MeiContract.FeedEntry.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP +
+                    MeiContract.FeedEntry.COLUMN_NAME_WIND + TEXT_TYPE + COMMA_SEP +
                     MeiContract.FeedEntry.COLUMN_NAME_PRESSURE + TEXT_TYPE + COMMA_SEP +
                     MeiContract.FeedEntry.COLUMN_NAME_TEMPERATURE + TEXT_TYPE + COMMA_SEP +
 
-                    " UNIQUE (" + MeiContract.FeedEntry.COLUMN_NAME_CITY + ", " +
+                    " UNIQUE (" + MeiContract.FeedEntry.COLUMN_NAME_CITY + COMMA_SEP +
                     MeiContract.FeedEntry.COLUMN_NAME_COUNTRY + ") )";
 
     private static final String SQL_DELETE_ENTRIES =
@@ -35,6 +35,7 @@ public class MeiHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
     public void onCreate(SQLiteDatabase db) {
+        //db.execSQL(SQL_DELETE_ENTRIES);
         db.execSQL(SQL_CREATE_ENTRIES);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

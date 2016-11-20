@@ -1,15 +1,24 @@
-package com.project.snave.sunshinees;
+package com.project.snave.sunshinees.activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.project.snave.sunshinees.data.City;
+import com.project.snave.sunshinees.view.CityAdapter;
+import com.project.snave.sunshinees.R;
+import com.project.snave.sunshinees.task.RefreshTask;
+import com.project.snave.sunshinees.tools.Tools;
+import com.project.snave.sunshinees.data.db.MeiManage;
 
 import java.util.ArrayList;
 
@@ -18,15 +27,29 @@ public class CityListActivity extends AppCompatActivity {
     private ListView CityView ;
     public static ArrayList<City> cities = new ArrayList<>();
     public static CityAdapter adapter;
+    public static MeiManage db;
+    RefreshTask rt;
+    public static SharedPreferences settings;
+    // Restore preferences
+    public static String prefTemperature, prefWindSpeed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        cities.add(new City("Detroit","United States"));
-        cities.add(new City("Venice","United States"));
-        cities.add(new City("Paris","France"));
+        rt = new RefreshTask(getBaseContext());
+
+        db = new MeiManage(this);
+        //cities.add(new City("Detroit","United States"));
+        Tools.feedList(cities, db.getAllCities());
+
+        // Restore preferences
+        settings = this.getPreferences(0);
+        prefTemperature = settings.getString("temperature", "c");
+        prefWindSpeed = settings.getString("wind_speed", "kmh");
+        Log.v("prefTemperature", prefTemperature);
+        Log.v("prefWindSpeed", prefWindSpeed);
 
         Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -56,6 +79,7 @@ public class CityListActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "you just removed " + city.getName() + ", "
                             + city.getCountry(), Toast.LENGTH_LONG).show();
                     adapter.remove(city);
+                    db.deleteCity(city.getName(), city.getCountry());
                     return true;
                 }
                 return false;
@@ -79,10 +103,11 @@ public class CityListActivity extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_settings:
+                Intent intent2 = new Intent(CityListActivity.this, SettingsActivity.class);
+                startActivity(intent2);
                 Toast.makeText(getBaseContext(), "no option available", Toast.LENGTH_LONG).show();
                 return true;
             case R.id.action_refresh:
-                RefreshTask rt = new RefreshTask(getBaseContext());
                 rt.execute(cities);
                 return true;
         }

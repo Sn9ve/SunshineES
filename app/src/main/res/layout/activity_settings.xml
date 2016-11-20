@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="2"
+    android:paddingEnd="30dp"
+    android:paddingStart="30dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Temperature"
+        android:layout_marginTop="59dp"
+        android:id="@+id/textCity"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Vent"
+        android:id="@+id/textCountry"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignStart="@+id/textCity" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sauvegarder"
+        android:id="@+id/saveSettings"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="129dp" />
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/radioGroup"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textCity"
+        android:layout_alignParentLeft="true">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="°C"
+            android:id="@+id/radioButtonC"
+            android:checked="false"
+            android:layout_alignTop="@+id/radioButtonF"
+            android:layout_toEndOf="@+id/textCountry" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="°F"
+            android:id="@+id/radioButtonF"
+            android:checked="false"
+            android:layout_below="@+id/textCity"
+            android:layout_alignStart="@+id/radioButtonMPH" />
+    </RadioGroup>
+
+    <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/radioGroup2"
+        android:orientation="horizontal"
+        android:layout_below="@+id/textCountry"
+        android:layout_alignParentStart="true">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="km/h"
+            android:id="@+id/radioButtonKMH"
+            android:checked="false"
+            android:layout_below="@+id/textCountry"
+            android:layout_toEndOf="@+id/textCountry" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="mph"
+            android:id="@+id/radioButtonMPH"
+            android:checked="false"
+            android:layout_alignTop="@+id/radioButtonKMH"
+            android:layout_toEndOf="@+id/radioButtonKMH" />
+    </RadioGroup>
+</RelativeLayout>
