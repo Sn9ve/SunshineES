@@ -3,7 +3,11 @@ package com.project.snave.sunshinees.activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.Loader;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,11 +28,12 @@ import com.project.snave.sunshinees.data.db.MeiManage;
 
 import java.util.ArrayList;
 
-public class CityListActivity extends AppCompatActivity {
+public class CityListActivity extends AppCompatActivity{ //implements LoaderManager.LoaderCallbacks<Cursor> {
 
     private ListView CityView ;
     public static ArrayList<City> cities = new ArrayList<>();
     public static CityAdapter adapter;
+    public static SimpleCursorAdapter sCursorAdapter;
     public static MeiManage db;
     RefreshTask rt;
     public static SharedPreferences settings;
@@ -44,9 +49,9 @@ public class CityListActivity extends AppCompatActivity {
 
         db = new MeiManage(this);
         //cities.add(new City("Detroit","United States")); //example
-        //Tools.feedList(cities, db.getAllCities());
+        Tools.feedList(cities, db.getAllCities());
         /** PROVIDER **/
-        ContentResolver resolver = getContentResolver();
+        /*ContentResolver resolver = getContentResolver();
         String[] projection = {
                 MeiContract.FeedEntry._ID,
                 MeiContract.FeedEntry.COLUMN_NAME_CITY,
@@ -66,7 +71,7 @@ public class CityListActivity extends AppCompatActivity {
                         null,
                         sortOrder
                 )
-        );
+        );*/
 
         // Restore preferences
         settings = this.getPreferences(0);
@@ -79,6 +84,20 @@ public class CityListActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         CityView = (ListView) findViewById(R.id.listView);
+        /*
+        getLoaderManager().initLoader(0, null, this);
+        sCursorAdapter = new SimpleCursorAdapter(
+                this,
+                android.R.layout.simple_list_item_1,
+                null,
+                new String[] {
+                        MeiContract.FeedEntry.COLUMN_NAME_CITY,
+                        MeiContract.FeedEntry.COLUMN_NAME_COUNTRY
+                },
+                new int[] { android.R.id.text1, android.R.id.text2},
+                0
+        );
+        CityView.setAdapter(sCursorAdapter);*/
         adapter = new CityAdapter(CityListActivity.this, cities);
         CityView.setAdapter(adapter);
 
@@ -108,8 +127,8 @@ public class CityListActivity extends AppCompatActivity {
                     ContentResolver resolver = getContentResolver();
                     resolver.delete(
                             MeiContract.FeedEntry.CONTENT_URI.buildUpon().appendPath(city.getCountry()).appendPath(city.getName()).build(),
-                            MeiContract.FeedEntry.COLUMN_NAME_CITY + " LIKE ? AND "
-                                    + MeiContract.FeedEntry.COLUMN_NAME_COUNTRY + " LIKE ?",
+                            MeiContract.FeedEntry.COLUMN_NAME_COUNTRY + " LIKE ? AND "
+                                    + MeiContract.FeedEntry.COLUMN_NAME_CITY + " LIKE ?",
                             null
                     );
                     return true;
@@ -145,4 +164,19 @@ public class CityListActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    /*@Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        sCursorAdapter.changeCursor(null);
+    }*/
 }
